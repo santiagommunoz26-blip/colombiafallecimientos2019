@@ -107,7 +107,7 @@ def load_geo() -> dict:
         GeoJSON con propiedades enriquecidas.
     """
     base = os.path.dirname(os.path.dirname(__file__))
-    path = os.path.join(base, "colombia.geojson")
+    path = os.path.join(base, "data", "colombia.geojson")
 
     with open(path, "r", encoding="utf-8") as f:
         geo = json.load(f)
