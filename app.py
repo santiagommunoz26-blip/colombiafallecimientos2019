@@ -20,7 +20,7 @@ import streamlit as st
 # ── Configuración de página (debe ser la primera llamada a Streamlit) ─────────
 st.set_page_config(
     page_title="Mortalidad Colombia 2019",
-    page_icon="🏥",
+    page_icon="📊",
     layout="wide",
     initial_sidebar_state="expanded",
 )
