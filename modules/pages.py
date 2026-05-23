@@ -115,6 +115,13 @@ def page_general(fdf: pd.DataFrame) -> None:
             fdf.groupby(["MES", "MES_L", "MANERA_MUERTE"])
             .size().reset_index(name="n")
         )
+        # Completar meses faltantes con 0 para evitar conexiones incorrectas
+        maneras = mes_df["MANERA_MUERTE"].unique()
+        idx = pd.MultiIndex.from_product(
+            [range(1, 13), maneras], names=["MES", "MANERA_MUERTE"]
+        )
+        mes_df = mes_df.set_index(["MES", "MANERA_MUERTE"]).reindex(idx, fill_value=0).reset_index()
+        mes_df["MES_L"] = mes_df["MES"].map({i+1: m for i, m in enumerate(MESES_ORD)})
         mes_df["MES_L"] = pd.Categorical(mes_df["MES_L"], categories=MESES_ORD, ordered=True)
         mes_df = mes_df.sort_values("MES")
 
